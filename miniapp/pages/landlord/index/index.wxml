@@ -1,0 +1,80 @@
+<!-- pages/landlord/index/index.wxml -->
+<view class="li-page">
+  <!-- 顶部欢迎区 -->
+  <view class="header">
+    <view class="header-left">
+      <image class="avatar" src="{{landlordInfo.avatar || '/assets/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view>
+        <text class="welcome">欢迎回来</text>
+        <text class="name">{{landlordInfo.name || landlordInfo.hostId || '房东'}}</text>
+      </view>
+    </view>
+    <view class="profile-btn" bindtap="goProfile">个人中心</view>
+  </view>
+
+  <!-- 数据统计卡片 -->
+  <view class="stats-grid">
+    <view class="stat-item">
+      <text class="stat-num">{{stats.totalHouses}}</text>
+      <text class="stat-label">总房源</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.rentedHouses}}</text>
+      <text class="stat-label">出租中</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num orange">{{stats.pendingOrders}}</text>
+      <text class="stat-label">待处理订单</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num green">¥{{stats.monthIncome}}</text>
+      <text class="stat-label">本月收益</text>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="section-title">快捷功能</view>
+  <view class="shortcut-grid">
+    <view class="shortcut-item" bindtap="goPublish">
+      <text class="sc-icon">➕</text>
+      <text class="sc-label">发布房源</text>
+    </view>
+    <view class="shortcut-item" bindtap="goHouses">
+      <text class="sc-icon">🏠</text>
+      <text class="sc-label">房源管理</text>
+    </view>
+    <view class="shortcut-item" bindtap="goOrders">
+      <text class="sc-icon">📋</text>
+      <text class="sc-label">订单管理</text>
+      <view class="badge" wx:if="{{stats.pendingOrders > 0}}">{{stats.pendingOrders}}</view>
+    </view>
+    <view class="shortcut-item" bindtap="goTenants">
+      <text class="sc-icon">👥</text>
+      <text class="sc-label">租客管理</text>
+      <view class="badge red" wx:if="{{unreadTotal > 0}}">{{unreadTotal > 99 ? '99+' : unreadTotal}}</view>
+    </view>
+    <view class="shortcut-item" bindtap="goStats">
+      <text class="sc-icon">📊</text>
+      <text class="sc-label">数据统计</text>
+    </view>
+  </view>
+
+  <!-- 待处理订单 -->
+  <view class="section-title">待处理订单</view>
+  <view class="pending-list">
+    <view class="pending-item" wx:for="{{pendingOrders}}" wx:key="orderNo" bindtap="goOrderDetail" data-id="{{item.id}}">
+      <view class="pi-left">
+        <text class="pi-house">{{item.houseTitle}}</text>
+        <text class="pi-tenant">租客：{{item.realName || item.userId}}</text>
+        <text class="pi-date">{{item.checkInDate}} ~ {{item.checkOutDate}}</text>
+      </view>
+      <view class="pi-right">
+        <text class="pi-amount">¥{{item.rentPrice}}</text>
+        <text class="pi-action">处理 ›</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:if="{{pendingOrders.length === 0}}">
+      <text class="empty-text">暂无待处理订单</text>
+    </view>
+  </view>
+</view>

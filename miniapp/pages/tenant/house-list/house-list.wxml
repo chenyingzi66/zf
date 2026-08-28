@@ -1,0 +1,123 @@
+<!-- pages/tenant/house-list/house-list.wxml -->
+<view class="list-page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <input class="search-input" placeholder="搜索房源、地址" value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm"/>
+    </view>
+    <view class="clear-btn" bindtap="clearFilter">清空</view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-tab {{showProvincePanel ? 'active' : ''}}" bindtap="togglePanel" data-type="Province">
+      <text>{{province === '全部' ? '区域' : province}}</text>
+      <text class="arrow">▼</text>
+    </view>
+    <view class="filter-tab {{showTypePanel ? 'active' : ''}}" bindtap="togglePanel" data-type="Type">
+      <text>{{houseType === '全部' ? '户型' : houseType}}</text>
+      <text class="arrow">▼</text>
+    </view>
+    <view class="filter-tab {{showPricePanel ? 'active' : ''}}" bindtap="togglePanel" data-type="Price">
+      <text>{{price === '全部' ? '价格' : price}}</text>
+      <text class="arrow">▼</text>
+    </view>
+    <view class="filter-tab {{showSortPanel ? 'active' : ''}}" bindtap="togglePanel" data-type="Sort">
+      <text>排序</text>
+      <text class="arrow">▼</text>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="mask" wx:if="{{showProvincePanel || showCityPanel || showDistrictPanel || showTypePanel || showPricePanel || showSortPanel}}" bindtap="closePanels"></view>
+
+  <!-- 省份筛选面板 -->
+  <view class="filter-panel" wx:if="{{showProvincePanel}}">
+    <view class="option-item {{province === item ? 'selected' : ''}}" wx:for="{{provinces}}" wx:key="index" bindtap="selectProvince" data-value="{{item}}">
+      <text>{{item}}</text>
+      <text wx:if="{{province === item}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 城市筛选面板 -->
+  <view class="filter-panel" wx:if="{{showCityPanel}}">
+    <view class="option-item {{city === item ? 'selected' : ''}}" wx:for="{{cities}}" wx:key="index" bindtap="selectCity" data-value="{{item}}">
+      <text>{{item}}</text>
+      <text wx:if="{{city === item}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 区县筛选面板 -->
+  <view class="filter-panel" wx:if="{{showDistrictPanel}}">
+    <view class="option-item {{district === item ? 'selected' : ''}}" wx:for="{{districts}}" wx:key="index" bindtap="selectDistrict" data-value="{{item}}">
+      <text>{{item}}</text>
+      <text wx:if="{{district === item}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 户型筛选面板 -->
+  <view class="filter-panel" wx:if="{{showTypePanel}}">
+    <view class="option-item {{houseType === item ? 'selected' : ''}}" wx:for="{{types}}" wx:key="index" bindtap="selectType" data-value="{{item}}">
+      <text>{{item}}</text>
+      <text wx:if="{{houseType === item}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 价格筛选面板 -->
+  <view class="filter-panel" wx:if="{{showPricePanel}}">
+    <view class="option-item {{price === item ? 'selected' : ''}}" wx:for="{{prices}}" wx:key="index" bindtap="selectPrice" data-value="{{item}}">
+      <text>{{item}}</text>
+      <text wx:if="{{price === item}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 排序面板 -->
+  <view class="filter-panel" wx:if="{{showSortPanel}}">
+    <view class="option-item {{sortType === item.value ? 'selected' : ''}}" wx:for="{{sorts}}" wx:key="value" bindtap="selectSort" data-value="{{item.value}}">
+      <text>{{item.label}}</text>
+      <text wx:if="{{sortType === item.value}}" class="check">✓</text>
+    </view>
+  </view>
+
+  <!-- 房源列表 -->
+  <view class="house-list">
+    <view class="house-card" wx:for="{{houseList}}" wx:key="houseId" bindtap="goToDetail" data-id="{{item.houseId}}">
+      <image class="house-cover" src="{{item.images[0] || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+      <view class="house-body">
+        <view class="house-name">{{item.title}}</view>
+        <view class="house-meta">
+          <text>{{item.houseType}}</text>
+          <text class="sep">·</text>
+          <text>{{item.area}}㎡</text>
+          <text class="sep">·</text>
+          <text>{{item.floor}}</text>
+        </view>
+        <view class="house-loc">📍 {{item.city}} {{item.district}} {{item.address}}</view>
+        <view class="house-foot">
+          <view class="house-price">
+            <text class="p-num">{{item.price}}</text>
+            <text class="p-unit">元/月</text>
+          </view>
+          <view class="house-tag">{{item.orientation}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{houseList.length === 0 && !loading}}">
+      <text class="empty-icon">🏠</text>
+      <text class="empty-text">暂无符合条件的房源</text>
+      <text class="empty-tip">试试其他筛选条件</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="load-more" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+
+    <!-- 没有更多 -->
+    <view class="load-more" wx:if="{{!loading && houseList.length > 0}}">
+      <text>已显示全部 {{houseList.length}} 套房源</text>
+    </view>
+  </view>
+</view>

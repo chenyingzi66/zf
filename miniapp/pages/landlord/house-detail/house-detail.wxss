@@ -1,0 +1,204 @@
+/* pages/landlord/house-detail/house-detail.wxss */
+.detail-page {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 120rpx;
+}
+
+.loading-wrap {
+  padding: 100rpx;
+  text-align: center;
+  color: #999;
+}
+
+/* 图片区域 */
+.img-section {
+  position: relative;
+  height: 500rpx;
+}
+
+.img-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-img {
+  width: 100%;
+  height: 100%;
+}
+
+.img-count {
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.status-badge {
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+/* 信息卡片 */
+.info-card {
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.house-title {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+  margin-right: 20rpx;
+}
+
+.house-price {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FF4444;
+  flex-shrink: 0;
+}
+
+.address-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.address-icon {
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.address-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag {
+  padding: 8rpx 20rpx;
+  background: #f5f5f5;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 审核状态 */
+.audit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.audit-row:last-child {
+  border-bottom: none;
+}
+
+.audit-label {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.audit-val {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 配套设施 */
+.facility-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.facility-item {
+  padding: 12rpx 24rpx;
+  background: #e6f7ff;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #1890ff;
+}
+
+/* 房源描述 */
+.desc-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.edit-btn {
+  background: #4A90E2;
+  color: #fff;
+}
+
+.toggle-btn {
+  background: #FA8C16;
+  color: #fff;
+}
+
+.del-btn {
+  background: #fff;
+  color: #FF4444;
+  border: 2rpx solid #FF4444;
+}

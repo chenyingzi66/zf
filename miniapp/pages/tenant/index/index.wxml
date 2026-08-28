@@ -1,0 +1,65 @@
+<!-- pages/tenant/index/index.wxml -->
+<view class="index-page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input 
+      class="search-input" 
+      placeholder="搜索房源、地址" 
+      value="{{searchKeyword}}"
+      bindinput="handleSearchInput"
+      bindconfirm="handleSearch"
+    />
+    <text class="search-btn" bindtap="handleSearch">搜索</text>
+  </view>
+
+  <!-- 轮播图 -->
+  <swiper class="banner-swiper" indicator-dots circular autoplay interval="3000" duration="500">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image class="banner-image" src="{{item.picUrl}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item" bindtap="goToFilter" data-type="region">区域筛选</view>
+    <view class="filter-item" bindtap="goToFilter" data-type="price">租金筛选</view>
+    <view class="filter-item" bindtap="goToFilter" data-type="type">户型筛选</view>
+  </view>
+
+  <!-- 房源列表 -->
+  <view class="house-list">
+    <view class="house-item" wx:for="{{houseList}}" wx:key="houseId" bindtap="goToDetail" data-id="{{item.houseId}}">
+      <image class="house-image" src="{{item.picsArr[0] || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+      <view class="house-info">
+        <view class="house-title">{{item.title}}</view>
+        <view class="house-tags">
+          <text class="tag">{{item.houseType}}</text>
+          <text class="tag">{{item.area}}㎡</text>
+          <text class="tag">{{item.floor}}</text>
+        </view>
+        <view class="house-location">
+          <text>{{item.city}} {{item.district}}</text>
+        </view>
+        <view class="house-bottom">
+          <view class="house-price">
+            <text class="price-num">{{item.price}}</text>
+            <text class="price-unit">元/月</text>
+          </view>
+          <view class="house-view">
+            <text>{{item.viewCount}}人浏览</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && houseList.length === 0}}">
+      <text class="empty-text">暂无房源</text>
+    </view>
+    
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text class="loading-text">加载中...</text>
+    </view>
+  </view>
+</view>

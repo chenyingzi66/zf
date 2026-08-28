@@ -1,0 +1,109 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading">加载中...</view>
+  </view>
+
+  <block wx:if="{{order && !loading}}">
+    <view class="status-bar" style="background: {{order.statusColor}};">
+      <view class="status-text">{{order.statusLabel}}</view>
+      <view class="status-desc">{{order.statusDesc}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">房源信息</view>
+      <view class="house-card" bindtap="viewHouse">
+        <image class="house-img" src="{{order.houseImage || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+        <view class="house-info">
+          <view class="house-title">{{order.houseTitle || '房源'}}</view>
+          <view class="house-address">{{order.houseAddress || '暂无地址'}}</view>
+          <view class="house-price">¥{{order.rentPrice || order.housePrice}}/{{order.rentUnit}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">入住信息</view>
+      <view class="info-row">
+        <text class="label">入住日期</text>
+        <text class="value">{{order.checkInDate || order.startDate || '未设置'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">退房日期</text>
+        <text class="value">{{order.checkOutDate || order.endDate || '未设置'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">租期类型</text>
+        <text class="value">{{order.rentType || '月租'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">租期时长</text>
+        <text class="value">{{order.rentCountDisplay}}{{order.rentUnit}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.guestName}}">
+        <text class="label">入住人</text>
+        <text class="value">{{order.guestName}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.guestPhone}}">
+        <text class="label">联系电话</text>
+        <text class="value">{{order.guestPhone}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">房东信息</view>
+      <view class="landlord-card" bindtap="contactLandlord">
+        <image class="landlord-avatar" src="{{order.landlordAvatar || '/assets/images/default-avatar.png'}}" mode="aspectFill"></image>
+        <view class="landlord-info">
+          <view class="landlord-name">{{order.landlordName || '房东'}}</view>
+          <view class="landlord-phone">{{order.landlordPhone || '暂无联系方式'}}</view>
+        </view>
+        <view class="contact-btn">联系房东</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">费用明细</view>
+      <view class="info-row">
+        <text class="label">单价</text>
+        <text class="value">¥{{order.unitPrice || order.rentPrice || 0}}/{{order.rentUnit}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">租金</text>
+        <text class="value price">¥{{order.rentAmount || 0}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">押金</text>
+        <text class="value price">¥{{order.deposit || 0}}</text>
+      </view>
+      <view class="info-row total">
+        <text class="label">合计</text>
+        <text class="value price total-price">¥{{order.totalAmount || 0}}</text>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{order.remark}}">
+      <view class="section-title">备注</view>
+      <view class="remark">{{order.remark}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">订单信息</view>
+      <view class="info-row">
+        <text class="label">订单编号</text>
+        <text class="value">{{order.orderNo}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">创建时间</text>
+        <text class="value">{{order.createTime}}</text>
+      </view>
+    </view>
+
+    <view class="footer-bar" wx:if="{{order.orderStatus === 0}}">
+      <button class="cancel-btn" bindtap="cancelOrder" disabled="{{operating}}">取消订单</button>
+    </view>
+  </block>
+
+  <view wx:if="{{!order && !loading}}" class="empty">
+    <text>订单不存在</text>
+  </view>
+</view>

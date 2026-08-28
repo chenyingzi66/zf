@@ -1,0 +1,4 @@
+USE suixinzhu;
+INSERT INTO house (house_id, host_id, title, province, city, district, address, price, rent_type, area, house_type, orientation, floor, pics, facilities, description, view_count, status, audit_status) VALUES 
+('hours20260319001', 'host13911112222', 'Modern 1BR Near Subway', 'Beijing', 'Beijing', 'Chaoyang', 'Jianguo Road 88', 3500.00, 'monthly', 45.00, '1BR', 'South', '12/20', '["https://via.placeholder.com/750x500/4A90E2/FFFFFF?text=House1"]', 'AC,Water Heater,Fridge', 'Modern 1 bedroom apartment', 100, 1, 1),
+('hours20260319002', 'host13911112222', 'Spacious 2BR Great Light', 'Beijing', 'Beijing', 'Haidian', 'Zhongguancun 100', 5200.00, 'monthly', 85.00, '2BR', 'North-South', '15/25', '["https://via.placeholder.com/750x500/52C41A/FFFFFF?text=House2"]', 'AC,Fridge,Washer', 'Standard 2 bedroom', 50, 1, 1);

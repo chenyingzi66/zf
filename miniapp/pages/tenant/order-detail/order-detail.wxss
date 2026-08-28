@@ -1,0 +1,212 @@
+.container {
+  padding: 0 0 120rpx 0;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.loading-wrap {
+  padding: 100rpx;
+  text-align: center;
+}
+
+.loading {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.status-bar {
+  padding: 40rpx 30rpx;
+  color: #fff;
+}
+
+.status-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.status-desc {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.section {
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.house-card {
+  display: flex;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.house-img {
+  width: 180rpx;
+  height: 140rpx;
+  flex-shrink: 0;
+}
+
+.house-info {
+  flex: 1;
+  padding: 15rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.house-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.house-address {
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.house-price {
+  font-size: 28rpx;
+  color: #FF6B35;
+  font-weight: bold;
+}
+
+.landlord-card {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.landlord-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.landlord-info {
+  flex: 1;
+}
+
+.landlord-name {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.landlord-phone {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.contact-btn {
+  padding: 16rpx 30rpx;
+  background: #4A90E2;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row .label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.info-row .value {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.info-row .value.price {
+  color: #FF6B35;
+}
+
+.info-row.total {
+  margin-top: 10rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #eee;
+  border-bottom: none;
+}
+
+.info-row.total .label {
+  font-weight: bold;
+  color: #333;
+}
+
+.total-price {
+  font-size: 36rpx !important;
+  font-weight: bold;
+}
+
+.remark {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.footer-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+}
+
+.cancel-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #FF4444;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+  border: none;
+}
+
+.cancel-btn[disabled] {
+  background: #ccc;
+}
+
+.empty {
+  padding: 100rpx;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}

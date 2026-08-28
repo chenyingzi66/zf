@@ -1,0 +1,345 @@
+/* pages/tenant/favorites/favorites.wxss */
+.fav-page { 
+  min-height: 100vh; 
+  background: #F5F5F5; 
+  padding: 20rpx; 
+}
+
+/* 顶部统计 */
+.header-stats {
+  display: flex;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  border-radius: 16rpx;
+  padding: 30rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid rgba(255,255,255,0.3);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-num {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.stat-label {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.9);
+  margin-top: 8rpx;
+}
+
+/* 收藏列表 */
+.fav-item { 
+  background: #fff; 
+  border-radius: 16rpx; 
+  margin-bottom: 20rpx; 
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  transition: all 0.3s;
+}
+
+.fav-item:active {
+  transform: scale(0.98);
+}
+
+.fav-content { 
+  display: flex; 
+  padding: 20rpx; 
+  gap: 20rpx; 
+}
+
+/* 图片区域 */
+.img-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fav-img { 
+  width: 200rpx; 
+  height: 150rpx; 
+  border-radius: 10rpx; 
+}
+
+.img-count {
+  position: absolute;
+  bottom: 8rpx;
+  right: 8rpx;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.fav-info { 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  min-width: 0;
+}
+
+.fav-title { 
+  font-size: 28rpx; 
+  font-weight: 600; 
+  color: #333; 
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.fav-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  color: #4A90E2;
+  background: #F0F7FF;
+  padding: 4rpx 12rpx;
+  border-radius: 6rpx;
+}
+
+.fav-meta { 
+  font-size: 24rpx; 
+  color: #999; 
+  margin-top: 8rpx;
+}
+
+.fav-location {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.fav-location::before {
+  content: '📍';
+  margin-right: 4rpx;
+}
+
+.fav-price { 
+  display: flex; 
+  align-items: baseline; 
+  margin-top: 8rpx;
+}
+
+.p { 
+  font-size: 36rpx; 
+  font-weight: bold; 
+  color: #FF4444; 
+}
+
+.u { 
+  font-size: 22rpx; 
+  color: #999; 
+  margin-left: 4rpx; 
+}
+
+.per-day {
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+/* 操作按钮 */
+.fav-actions { 
+  display: flex; 
+  border-top: 1rpx solid #F5F5F5; 
+}
+
+.btn-book, .btn-del, .btn-chat { 
+  flex: 1; 
+  height: 80rpx; 
+  line-height: 80rpx; 
+  text-align: center; 
+  font-size: 26rpx;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-book { 
+  color: #4A90E2; 
+  border-right: 1rpx solid #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.btn-book::before {
+  content: '📅';
+}
+
+.btn-chat {
+  color: #52C41A;
+  border-right: 1rpx solid #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.btn-chat::before {
+  content: '💬';
+}
+
+.btn-del { 
+  color: #FF4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.btn-del::before {
+  content: '💔';
+}
+
+.btn-book:active, .btn-chat:active, .btn-del:active {
+  background: #F9F9F9;
+}
+
+/* 空状态 */
+.empty-state { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  padding: 120rpx 40rpx; 
+}
+
+.empty-icon { 
+  font-size: 120rpx; 
+  margin-bottom: 24rpx; 
+}
+
+.empty-text { 
+  font-size: 32rpx; 
+  color: #666; 
+  font-weight: 500; 
+}
+
+.empty-sub { 
+  font-size: 26rpx; 
+  color: #999; 
+  margin-top: 12rpx; 
+}
+
+.go-explore { 
+  margin-top: 40rpx; 
+  padding: 24rpx 60rpx; 
+  background: linear-gradient(135deg, #4A90E2 0%, #5BA3F5 100%);
+  color: #fff; 
+  border-radius: 40rpx; 
+  font-size: 28rpx;
+  font-weight: 500;
+  box-shadow: 0 4rpx 12rpx rgba(74,144,226,0.3);
+}
+
+.go-explore:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 加载中 */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+}
+
+.loading-dot {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #F0F0F0;
+  border-top-color: #FF6B6B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 16rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 批量操作栏 */
+.batch-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #F0F0F0;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.batch-info {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.batch-btn {
+  background: #FF4444;
+  color: #fff;
+  padding: 16rpx 40rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.batch-btn:disabled {
+  background: #CCC;
+}
+
+/* 选择框 */
+.select-wrap {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.select-icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #DDD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: transparent;
+  transition: all 0.3s;
+}
+
+.select-icon.selected {
+  background: #4A90E2;
+  border-color: #4A90E2;
+  color: #fff;
+}

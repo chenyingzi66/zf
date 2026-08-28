@@ -1,0 +1,58 @@
+<!-- pages/tenant/favorites/favorites.wxml -->
+<view class="fav-page">
+  <!-- 顶部统计 -->
+  <view class="header-stats">
+    <view class="stat-item">
+      <text class="stat-num">{{list.length}}</text>
+      <text class="stat-label">收藏房源</text>
+    </view>
+  </view>
+
+  <!-- 收藏列表 -->
+  <view class="fav-item" wx:for="{{list}}" wx:key="id">
+    <view class="fav-content" bindtap="goToDetail" data-id="{{item.houseId}}" data-index="{{index}}">
+      <!-- 图片区域 -->
+      <view class="img-wrap">
+        <image class="fav-img" src="{{item.coverImage || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+        <view class="img-count" wx:if="{{item.images && item.images.length > 1}}">{{item.images.length}}图</view>
+      </view>
+      
+      <!-- 信息区域 -->
+      <view class="fav-info">
+        <view>
+          <text class="fav-title">{{item.title}}</text>
+          <view class="fav-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+          <view class="fav-meta">{{item.houseType}} · {{item.area}}㎡ · {{item.floor}}</view>
+          <view class="fav-location" wx:if="{{item.region}}">{{item.region}}</view>
+        </view>
+        <view class="fav-price">
+          <text class="p">{{item.price}}</text>
+          <text class="u">元/{{item.rentType}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 操作按钮 -->
+    <view class="fav-actions">
+      <view class="btn-chat" bindtap="contactLandlord" data-id="{{item.houseId}}" data-host-id="{{item.hostId}}" data-title="{{item.title}}">联系房东</view>
+      <view class="btn-book" bindtap="bookNow" data-id="{{item.houseId}}">立即预定</view>
+      <view class="btn-del" bindtap="removeFavorite" data-id="{{item.id}}" data-index="{{index}}">取消收藏</view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-dot"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{list.length === 0 && !loading}}">
+    <text class="empty-icon">💔</text>
+    <text class="empty-text">暂无收藏房源</text>
+    <text class="empty-sub">看到心仪的房源就收藏起来吧</text>
+    <view class="go-explore" bindtap="goExplore">去探索房源</view>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<!-- pages/landlord/feedback/feedback.wxml -->
+<view class="feedback-page">
+  <view class="form-card">
+    <view class="section-title">反馈类型</view>
+    <view class="type-list">
+      <view class="type-item {{activeType === index ? 'active' : ''}}" wx:for="{{types}}" wx:key="index" bindtap="selectType" data-idx="{{index}}">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="form-card">
+    <view class="section-title">反馈内容 <text class="required">*</text></view>
+    <textarea class="content-input {{contentErr ? 'error-border' : ''}}" placeholder="请详细描述您的问题或建议（至少10个字符）" value="{{content}}" bindinput="onInput" maxlength="500"></textarea>
+    <text class="count">{{content.length}}/500</text>
+  </view>
+
+  <view class="submit-btn {{submitting ? 'disabled' : ''}}" bindtap="submit">
+    {{submitting ? '提交中...' : '提交反馈'}}
+  </view>
+</view>

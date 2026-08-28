@@ -1,0 +1,362 @@
+/* pages/landlord/tenants/tenants.wxss */
+.tenants-page { 
+  min-height: 100vh; 
+  background: #F5F5F5; 
+  padding: 20rpx; 
+}
+
+/* 顶部统计卡片 */
+.header-stats {
+  display: flex;
+  background: linear-gradient(135deg, #4A90E2 0%, #5BA3F5 100%);
+  border-radius: 16rpx;
+  padding: 30rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid rgba(255,255,255,0.3);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-num {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.stat-num.red {
+  color: #FF6B6B;
+}
+
+.stat-label {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.9);
+  margin-top: 8rpx;
+}
+
+/* 租客卡片 */
+.tenant-card { 
+  background: #fff; 
+  border-radius: 16rpx; 
+  margin-bottom: 20rpx; 
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 新消息标记条 */
+.tenant-card.has-new::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+  background: #FF4444;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.card-left { 
+  display: flex; 
+  gap: 20rpx; 
+  flex: 1;
+}
+
+.delete-btn {
+  font-size: 40rpx;
+  color: #999;
+  cursor: pointer;
+  padding: 10rpx;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.delete-btn:hover {
+  background: #F5F5F5;
+  color: #FF4444;
+}
+
+.delete-btn:active {
+  transform: scale(0.9);
+}
+
+/* 头像区域 */
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.t-avatar { 
+  width: 100rpx; 
+  height: 100rpx; 
+  border-radius: 50%; 
+  background: #F0F0F0;
+  border: 2rpx solid #F0F0F0;
+}
+
+/* 在线状态指示器 */
+.online-indicator {
+  position: absolute;
+  bottom: 4rpx;
+  right: 4rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background: #52C41A;
+  border-radius: 50%;
+  border: 4rpx solid #FFFFFF;
+}
+
+.t-info { 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6rpx; 
+  min-width: 0;
+}
+
+.t-name-row { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+}
+
+.t-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.t-id {
+  font-size: 22rpx;
+  color: #999;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 2rpx;
+}
+
+/* 未读消息徽章 */
+.t-unread { 
+  background: linear-gradient(135deg, #FF4444 0%, #FF6B6B 100%); 
+  color: #fff; 
+  font-size: 20rpx; 
+  padding: 4rpx 12rpx; 
+  border-radius: 20rpx; 
+  min-width: 32rpx; 
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 2rpx 8rpx rgba(255,68,68,0.3);
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* 房源信息 */
+.t-house { 
+  font-size: 26rpx; 
+  color: #4A90E2; 
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.t-period { 
+  font-size: 24rpx; 
+  color: #999; 
+}
+
+.t-phone { 
+  font-size: 24rpx; 
+  color: #666; 
+  display: flex;
+  align-items: center;
+}
+
+.t-phone::before {
+  content: '📱';
+  margin-right: 8rpx;
+  font-size: 20rpx;
+}
+
+/* 消息预览区域 */
+.t-message-row { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  margin-top: 12rpx;
+  padding: 12rpx 16rpx;
+  background: #F8F9FA;
+  border-radius: 12rpx;
+}
+
+.t-last-msg { 
+  font-size: 24rpx; 
+  color: #666; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  flex: 1;
+}
+
+.t-last-msg.unread {
+  color: #333;
+  font-weight: 500;
+}
+
+.t-last-time { 
+  font-size: 20rpx; 
+  color: #999; 
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.t-no-message { 
+  font-size: 24rpx; 
+  color: #CCC; 
+  font-style: italic;
+  margin-top: 12rpx;
+  padding: 12rpx 16rpx;
+  background: #F8F9FA;
+  border-radius: 12rpx;
+}
+
+/* 操作按钮区域 */
+.card-actions { 
+  display: flex; 
+  gap: 20rpx; 
+  border-top: 1rpx solid #F0F0F0; 
+  padding-top: 20rpx; 
+}
+
+.action-btn { 
+  flex: 1; 
+  height: 72rpx; 
+  line-height: 72rpx; 
+  text-align: center; 
+  border-radius: 36rpx; 
+  font-size: 26rpx;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 沟通按钮 */
+.chat-btn { 
+  background: linear-gradient(135deg, #4A90E2 0%, #5BA3F5 100%); 
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(74,144,226,0.3);
+}
+
+.chat-btn.has-new { 
+  background: linear-gradient(135deg, #FF4444 0%, #FF6B6B 100%); 
+  box-shadow: 0 4rpx 12rpx rgba(255,68,68,0.3);
+  animation: newMessagePulse 1.5s infinite;
+}
+
+@keyframes newMessagePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4rpx 12rpx rgba(255,68,68,0.3);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 6rpx 20rpx rgba(255,68,68,0.5);
+  }
+}
+
+/* 租赁记录按钮 */
+.order-btn { 
+  background: #F5F5F5; 
+  color: #666; 
+  border: 2rpx solid #E8E8E8;
+}
+
+.order-btn:active {
+  background: #E8E8E8;
+}
+
+/* 空状态 */
+.empty-state { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  padding: 120rpx 40rpx; 
+}
+
+.empty-icon { 
+  font-size: 120rpx; 
+  margin-bottom: 24rpx; 
+}
+
+.empty-text { 
+  font-size: 30rpx; 
+  color: #999; 
+}
+
+.loading-tip { 
+  text-align: center; 
+  padding: 40rpx; 
+  font-size: 26rpx; 
+  color: #999; 
+}
+
+/* 新消息提示条 */
+.new-message-tip {
+  position: fixed;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FF4444 0%, #FF6B6B 100%);
+  color: #fff;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 16rpx rgba(255,68,68,0.4);
+  animation: slideDown 0.3s ease-out;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.new-message-tip::before {
+  content: '🔔';
+  font-size: 28rpx;
+}

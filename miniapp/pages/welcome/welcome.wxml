@@ -1,0 +1,32 @@
+<!-- pages/welcome/welcome.wxml -->
+<view class="welcome-container">
+  <view class="welcome-header">
+    <image class="logo" src="/assets/images/logo.png" mode="aspectFit"></image>
+    <text class="title">随心住</text>
+    <text class="subtitle">让租房更简单</text>
+  </view>
+
+  <view class="welcome-main">
+    <view class="button-group">
+      <button class="btn btn-tenant" bindtap="goTenantLogin">
+        <view class="btn-content">
+          <text class="btn-icon">🏠</text>
+          <text class="btn-text">租客登录</text>
+        </view>
+      </button>
+      <button class="btn btn-landlord" bindtap="goLandlordLogin">
+        <view class="btn-content">
+          <text class="btn-icon">🔑</text>
+          <text class="btn-text">房东登录</text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  <view class="welcome-footer">
+    <text class="footer-text">使用即代表同意</text>
+    <text class="footer-link" bindtap="showAgreement">《用户协议》</text>
+    <text class="footer-text">和</text>
+    <text class="footer-link" bindtap="showPrivacy">《隐私政策》</text>
+  </view>
+</view>

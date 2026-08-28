@@ -1,0 +1,297 @@
+/* pages/tenant/house-detail/house-detail.wxss */
+.detail-container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 160rpx;
+}
+
+.image-swiper {
+  width: 100%;
+  height: 500rpx;
+}
+
+.house-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 信息卡片 */
+.info-card, .section-card {
+  background: #FFFFFF;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.price-wrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.price {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #FF4444;
+}
+
+.unit {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #999;
+  padding: 12rpx 24rpx;
+  border: 2rpx solid #eee;
+  border-radius: 40rpx;
+}
+
+.favorite-btn.active {
+  color: #FF4444;
+  border-color: #FF4444;
+}
+
+.fav-icon {
+  margin-right: 8rpx;
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.tag {
+  padding: 8rpx 20rpx;
+  background: #F0F7FF;
+  color: #4A90E2;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+}
+
+.address-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.address {
+  flex: 1;
+  font-size: 26rpx;
+  color: #666;
+  margin-left: 8rpx;
+}
+
+.nav-btn {
+  font-size: 26rpx;
+  color: #4A90E2;
+  padding: 8rpx 20rpx;
+  border: 2rpx solid #4A90E2;
+  border-radius: 20rpx;
+}
+
+.deposit-row {
+  display: flex;
+  align-items: center;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.deposit-label {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 16rpx;
+}
+
+.deposit-value {
+  font-size: 30rpx;
+  color: #FA8C16;
+  font-weight: 500;
+}
+
+/* 分区块 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 12rpx;
+  border-left: 6rpx solid #4A90E2;
+}
+
+.description {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 配套设施 */
+.facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.facility-item {
+  display: flex;
+  align-items: center;
+  width: calc(33% - 14rpx);
+}
+
+.facility-icon {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+
+.facility-name {
+  font-size: 26rpx;
+  color: #555;
+}
+
+/* 房东信息 */
+.landlord-row {
+  display: flex;
+  align-items: center;
+}
+
+.landlord-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}
+
+.landlord-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.landlord-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.landlord-tag {
+  font-size: 22rpx;
+  color: #52C41A;
+  margin-top: 6rpx;
+}
+
+.landlord-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  padding: 12rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+}
+
+.call-btn {
+  background: #F0F7FF;
+  color: #4A90E2;
+}
+
+.msg-btn {
+  background: #F0FFF4;
+  color: #52C41A;
+}
+
+/* 房源发布者 */
+.host-info {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.host-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  background: #f5f5f5;
+}
+
+.host-detail {
+  flex: 1;
+}
+
+.host-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.host-id {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 30rpx;
+  background: #FFFFFF;
+  box-shadow: 0 -4rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.contact-btn, .book-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.contact-btn {
+  background: #F0F7FF;
+  color: #4A90E2;
+  border: 2rpx solid #4A90E2;
+}
+
+.book-btn {
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  color: #FFFFFF;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}

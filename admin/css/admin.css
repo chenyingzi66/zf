@@ -1,0 +1,602 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+  background: #f0f2f5; 
+  color: #303133;
+}
+
+/* ==================== 登录页 ==================== */
+.login-wrap {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  height: 100vh; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-wrap::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: -100px;
+  right: -100px;
+}
+
+.login-wrap::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  bottom: -50px;
+  left: -50px;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.login-box {
+  flex: 1;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-logo {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e2a3a;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #909399;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form .el-form-item {
+  margin-bottom: 0;
+}
+
+.login-form .el-input {
+  font-size: 14px;
+}
+
+.login-form .el-form-item:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.login-tip {
+  font-size: 12px;
+  color: #909399;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ebeef5;
+}
+
+.login-footer p {
+  font-size: 12px;
+  color: #909399;
+}
+
+.login-side {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 60px 50px;
+}
+
+.login-side-content {
+  text-align: center;
+}
+
+.login-side-content h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.login-side-content p {
+  font-size: 16px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.login-features {
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+}
+
+.login-features li {
+  font-size: 14px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+/* ==================== 主布局 ==================== */
+.main-container { 
+  height: 100vh; 
+  display: flex;
+}
+
+/* ==================== 侧边栏 ==================== */
+.aside { 
+  background: #1e2a3a; 
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.aside-logo {
+  height: 60px; 
+  line-height: 60px; 
+  text-align: center;
+  color: #fff; 
+  font-size: 18px; 
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.el-menu { 
+  border-right: none !important; 
+  flex: 1; 
+  overflow-y: auto; 
+}
+
+.el-menu-item { 
+  height: 52px; 
+  line-height: 52px; 
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.el-menu-item.is-active { 
+  background: rgba(64, 158, 255, 0.15) !important;
+  border-left: 3px solid #409EFF;
+}
+
+.el-menu-item:hover { 
+  background: rgba(255, 255, 255, 0.06) !important; 
+}
+
+/* ==================== 顶部 header ==================== */
+.header {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  background: #fff; 
+  border-bottom: 1px solid #ebeef5;
+  padding: 0 24px; 
+  height: 60px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.page-title { 
+  font-size: 18px; 
+  font-weight: 600; 
+  color: #303133; 
+}
+
+.header-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 16px; 
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #606266;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.admin-info:hover {
+  color: #409EFF;
+}
+
+.admin-name { 
+  color: #606266; 
+  font-size: 14px; 
+}
+
+/* ==================== 主内容区 ==================== */
+.main-content { 
+  padding: 24px; 
+  overflow-y: auto; 
+  background: #f0f2f5;
+  flex: 1;
+}
+
+/* ==================== 统计卡片 ==================== */
+.stat-card {
+  border-radius: 10px !important;
+  transition: all 0.3s;
+  cursor: default;
+  border: none !important;
+}
+
+.stat-card:hover { 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
+}
+
+.stat-card .el-card__body { 
+  display: flex; 
+  align-items: center; 
+  gap: 16px; 
+}
+
+.stat-icon {
+  width: 56px; 
+  height: 56px; 
+  border-radius: 12px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 28px; 
+  flex-shrink: 0;
+}
+
+.stat-info { 
+  flex: 1; 
+}
+
+.stat-num { 
+  font-size: 28px; 
+  font-weight: 700; 
+  color: #303133; 
+  line-height: 1.2; 
+}
+
+.stat-label { 
+  font-size: 13px; 
+  color: #909399; 
+  margin-top: 4px; 
+}
+
+/* ==================== 工具栏 ==================== */
+.page-toolbar {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 16px;
+  flex-wrap: wrap; 
+  gap: 8px;
+}
+
+/* ==================== 表格 ==================== */
+.el-table { 
+  border-radius: 8px; 
+  overflow: hidden;
+  background: #fff;
+}
+
+.el-table th { 
+  background: #f5f7fa !important;
+  font-weight: 600;
+}
+
+.el-table tr:hover > td {
+  background: #f5f7fa !important;
+}
+
+/* ==================== el-card ==================== */
+.el-card { 
+  border-radius: 10px !important;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.el-card__header { 
+  font-size: 15px; 
+  font-weight: 600; 
+  color: #303133;
+  border-bottom: 1px solid #ebeef5;
+}
+
+.data-card {
+  margin-bottom: 0;
+}
+
+/* ==================== 数据卡片列表 ==================== */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #909399;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.house-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.house-item {
+  padding: 12px;
+  border: 1px solid #ebeef5;
+  border-radius: 6px;
+  background: #fafbfc;
+  transition: all 0.3s;
+}
+
+.house-item:hover {
+  background: #f5f7fa;
+  border-color: #d9d9d9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.house-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.house-title {
+  font-weight: 600;
+  color: #303133;
+  font-size: 14px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.house-id {
+  color: #909399;
+  font-size: 12px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.house-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.info-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #f0f9ff;
+  color: #0ea5e9;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.price {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 13px;
+  margin-left: auto;
+}
+
+.house-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  padding: 12px;
+  border: 1px solid #ebeef5;
+  border-radius: 6px;
+  background: #fafbfc;
+  transition: all 0.3s;
+}
+
+.order-item:hover {
+  background: #f5f7fa;
+  border-color: #d9d9d9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #303133;
+  font-size: 14px;
+}
+
+.order-info {
+  margin-bottom: 10px;
+}
+
+.house-name {
+  margin: 0 0 4px 0;
+  color: #303133;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-dates {
+  margin: 0;
+  color: #909399;
+  font-size: 12px;
+}
+
+.order-amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #ebeef5;
+}
+
+.order-amount .label {
+  color: #606266;
+  font-size: 12px;
+}
+
+.order-amount .amount {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ==================== 分页 ==================== */
+.el-pagination { 
+  padding: 0; 
+}
+
+/* ==================== 响应式 ==================== */
+@media (max-width: 1400px) {
+  .login-container {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .login-side {
+    display: none;
+  }
+
+  .login-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .el-col-6 { 
+    width: 50% !important; 
+    max-width: 50% !important; 
+    flex: 0 0 50% !important; 
+    margin-bottom: 12px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .aside {
+    width: 60px !important;
+  }
+
+  .aside-logo {
+    font-size: 14px;
+  }
+
+  .el-menu-item span {
+    display: none;
+  }
+
+  .header {
+    padding: 0 16px;
+  }
+
+  .page-title {
+    font-size: 16px;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .el-col-6 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+}
+
+/* ==================== 对话框 ==================== */
+.el-dialog {
+  border-radius: 10px !important;
+}
+
+.el-dialog__header {
+  border-bottom: 1px solid #ebeef5;
+}
+
+.el-dialog__title {
+  font-weight: 600;
+  color: #303133;
+}
+
+/* ==================== 滚动条 ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}

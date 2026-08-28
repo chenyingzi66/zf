@@ -1,0 +1,69 @@
+<!-- pages/tenant/login/login.wxml -->
+<view class="login-container">
+  <view class="login-form">
+    <view class="form-group">
+      <label class="form-label">手机号</label>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入手机号"
+        data-field="phone"
+        value="{{phone}}"
+        bindinput="onInput"
+        maxlength="11"
+      />
+    </view>
+
+    <view class="form-group">
+      <label class="form-label">密码</label>
+      <input 
+        class="form-input" 
+        type="password" 
+        password
+        placeholder="请输入密码"
+        data-field="password"
+        value="{{password}}"
+        bindinput="onInput"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="agreement">
+      <checkbox-group bindchange="handleAgreementChange">
+        <label class="agreement-item">
+          <checkbox value="agree" checked="{{agreed}}" color="#4A90E2"/>
+          <text class="agreement-text">我已阅读并同意以下协议</text>
+        </label>
+      </checkbox-group>
+      <view class="agreement-links">
+        <text class="agreement-link" bindtap="showAgreement">《用户协议》</text>
+        <text class="agreement-separator">|</text>
+        <text class="agreement-link" bindtap="showPrivacy">《隐私政策》</text>
+      </view>
+    </view>
+
+    <button 
+      class="btn-login"
+      bindtap="login"
+      disabled="{{submitting}}"
+    >
+      {{submitting ? '登录中...' : '登录'}}
+    </button>
+
+    <view class="divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">或</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <view class="register-link">
+      <text>没有账号？</text>
+      <text class="link" bindtap="goRegister">注册新账号</text>
+    </view>
+  </view>
+
+  <view class="footer-tips">
+    <text class="tips-item">• 演示验证码: 123456</text>
+    <text class="tips-item">• 密码长度至少6位</text>
+  </view>
+</view>

@@ -1,0 +1,138 @@
+<!-- pages/tenant/booking/booking.wxml -->
+<view class="booking-page">
+  <!-- 房源信息 -->
+  <view class="house-summary" wx:if="{{house}}">
+    <image class="house-thumb" src="{{house.images[0] || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+    <view class="house-summary-info">
+      <text class="house-title">{{house.title}}</text>
+      <view class="house-location">📍 {{house.city}} {{house.district}}</view>
+      <view class="house-price-row">
+        <text class="price-num">¥{{house.price}}</text>
+        <text class="price-unit">/{{rentUnit}}</text>
+      </view>
+      <view class="rent-type-tag">{{rentType}}</view>
+    </view>
+  </view>
+
+  <!-- 入住人信息 -->
+  <view class="form-card">
+    <view class="card-title">入住人信息</view>
+    
+    <view class="form-item {{nameErr ? 'error-border' : ''}}">
+      <text class="form-label required">姓名</text>
+      <input class="form-input" placeholder="请输入入住人姓名" value="{{guestName}}" bindinput="onNameInput" maxlength="20"/>
+    </view>
+    
+    <view class="form-item {{phoneErr ? 'error-border' : ''}}">
+      <text class="form-label required">手机号</text>
+      <input class="form-input" type="number" placeholder="请输入手机号" value="{{guestPhone}}" bindinput="onPhoneInput" maxlength="11"/>
+    </view>
+  </view>
+
+  <!-- 入住信息 -->
+  <view class="form-card">
+    <view class="card-title">入住信息</view>
+
+    <view class="form-item {{startDateErr ? 'error-border' : ''}}">
+      <text class="form-label required">入住日期</text>
+      <picker mode="date" value="{{startDate}}" start="{{today}}" bindchange="pickStartDate">
+        <view class="picker-val">
+          <text class="{{startDate ? 'black' : 'gray'}}">{{startDate || '请选择入住日期'}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label required">租期</text>
+      <picker mode="selector" range="{{rentCountOptions}}" range-key="label" value="{{selectedRentCount - 1}}" bindchange="onRentCountChange">
+        <view class="picker-val">
+          <text class="black">{{selectedRentCount}}{{rentUnit}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">退房日期</text>
+      <view class="picker-val">
+        <text class="{{endDate ? 'black' : 'gray'}}">{{endDate || '自动计算'}}</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">订单备注</text>
+      <textarea class="remark-input" placeholder="可填写特殊需求或备注（选填）" value="{{remark}}" bindinput="onRemarkInput" maxlength="200"></textarea>
+    </view>
+  </view>
+
+  <!-- 价格明细 -->
+  <view class="fee-card" wx:if="{{priceDetail && days > 0}}">
+    <view class="card-title">价格明细</view>
+    
+    <!-- 租住方式说明 -->
+    <view class="fee-row highlight-row">
+      <text class="fee-label">租住方式</text>
+      <text class="fee-val rent-type">{{priceDetail.type}}</text>
+    </view>
+    
+    <!-- 租期信息 -->
+    <view class="fee-row">
+      <text class="fee-label">租住时长</text>
+      <view class="fee-val-wrap">
+        <text class="fee-val">{{priceDetail.count}}{{priceDetail.unit}}</text>
+        <text class="fee-sub">（共{{days}}天）</text>
+      </view>
+    </view>
+    
+    <!-- 单价 -->
+    <view class="fee-row">
+      <text class="fee-label">单价</text>
+      <text class="fee-val">¥{{priceDetail.unitPrice}}/{{priceDetail.unit}}</text>
+    </view>
+    
+    <!-- 计算公式 -->
+    <view class="fee-row formula-row">
+      <text class="fee-label">租金计算</text>
+      <text class="fee-val formula">{{priceDetail.formula}}</text>
+    </view>
+    
+    <!-- 租金合计 -->
+    <view class="fee-row">
+      <text class="fee-label">租金合计</text>
+      <text class="fee-val">¥{{rentAmount}}</text>
+    </view>
+    
+    <!-- 押金 -->
+    <view class="fee-row">
+      <text class="fee-label">押金（退房可退）</text>
+      <text class="fee-val orange">¥{{deposit}}</text>
+    </view>
+    
+    <!-- 总计 -->
+    <view class="fee-row total-row">
+      <text class="fee-label bold">应付总额</text>
+      <text class="fee-total red">¥{{totalAmount}}</text>
+    </view>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="tips-card">
+    <view class="tips-title">温馨提示</view>
+    <view class="tips-text">1. 提交订单后需等待房东确认</view>
+    <view class="tips-text">2. 房东确认后需在约定时间内支付押金和租金</view>
+    <view class="tips-text">3. 退房后押金将在验收无误后退还</view>
+    <view class="tips-text">4. 如需提前退房，请提前7天通知房东</view>
+  </view>
+
+  <!-- 底部提交 -->
+  <view class="bottom-bar safe-area-bottom">
+    <view class="total-info" wx:if="{{totalAmount > 0}}">
+      <text class="gray-sm">应付总额</text>
+      <text class="total-num">¥{{totalAmount}}</text>
+    </view>
+    <view class="submit-btn {{submitting || !canSubmit ? 'disabled' : ''}}" bindtap="submitOrder">
+      {{submitting ? '提交中...' : '提交预定'}}
+    </view>
+  </view>
+</view>

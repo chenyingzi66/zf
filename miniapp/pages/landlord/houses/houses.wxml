@@ -1,0 +1,53 @@
+<!-- pages/landlord/houses/houses.wxml -->
+<view class="houses-page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索房源名称" value="{{keyword}}" bindinput="onInput" bindconfirm="doSearch" />
+    <view class="search-btn" bindtap="doSearch">搜索</view>
+    <view class="publish-btn" bindtap="goPublish">＋发布</view>
+  </view>
+
+  <!-- 状态筛选 -->
+  <view class="filter-bar">
+    <view class="filter-item {{activeFilter === 'all' ? 'active' : ''}}" bindtap="switchFilter" data-filter="all">全部</view>
+    <view class="filter-item {{activeFilter === '1' ? 'active' : ''}}" bindtap="switchFilter" data-filter="1">已上架</view>
+    <view class="filter-item {{activeFilter === '0' ? 'active' : ''}}" bindtap="switchFilter" data-filter="0">已下架</view>
+    <view class="filter-item {{activeFilter === '2' ? 'active' : ''}}" bindtap="switchFilter" data-filter="2">审核中</view>
+  </view>
+
+  <!-- 房源列表 -->
+  <view class="house-list">
+    <view class="house-card" wx:for="{{list}}" wx:key="houseId">
+      <view class="card-top" bindtap="goDetail" data-id="{{item.houseId}}">
+        <image class="house-img" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <view class="house-meta">
+          <view class="title-row">
+            <text class="house-title">{{item.title}}</text>
+            <text class="status-tag" style="background:{{item.statusBg}};color:{{item.statusColor}}">{{item.statusLabel}}</text>
+          </view>
+          <text class="house-region">{{item.province}}{{item.city}}{{item.district}}</text>
+          <text class="house-address">{{item.address}}</text>
+          <view class="house-bottom">
+            <text class="house-price">¥{{item.price}}/{{item.rentType === '日租' ? '天' : item.rentType === '季租' ? '季' : item.rentType === '年租' ? '年' : '月'}}</text>
+            <text class="house-type">{{item.houseType}} · {{item.area}}㎡</text>
+          </view>
+          <view class="audit-info">
+            <text class="audit-status" style="color:{{item.auditStatusColor}}">{{item.auditStatusLabel}}</text>
+            <text class="view-count">浏览 {{item.viewCount || 0}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-actions">
+        <view class="action-btn edit-btn" bindtap="goEdit" data-id="{{item.houseId}}">编辑</view>
+        <view class="action-btn del-btn" bindtap="deleteHouseAction" data-id="{{item.houseId}}" data-status="{{item.status}}">删除</view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{list.length === 0 && !loading}}">
+      <text class="empty-icon">🏠</text>
+      <text class="empty-text">暂无房源，快去发布吧</text>
+      <view class="go-publish" bindtap="goPublish">立即发布</view>
+    </view>
+    <view class="loading-tip" wx:if="{{loading}}"><text>加载中...</text></view>
+  </view>
+</view>

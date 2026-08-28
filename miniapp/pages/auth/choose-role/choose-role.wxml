@@ -1,0 +1,41 @@
+<!-- pages/auth/choose-role/choose-role.wxml -->
+<view class="choose-container">
+  <view class="header">
+    <image class="logo" src="/assets/images/logo.png" mode="aspectFit"></image>
+    <text class="title">欢迎使用随心住</text>
+    <text class="subtitle">让租房更简单</text>
+  </view>
+
+  <view class="content">
+    <text class="prompt">请选择您的身份</text>
+    
+    <view class="role-cards">
+      <!-- 租客卡片 -->
+      <view class="role-card tenant-card" bindtap="chooseTenant">
+        <view class="card-icon">
+          <text class="icon">🏠</text>
+        </view>
+        <text class="card-title">我是租客</text>
+        <text class="card-desc">寻找心仪的房源</text>
+        <view class="card-arrow">→</view>
+      </view>
+
+      <!-- 房东卡片 -->
+      <view class="role-card landlord-card" bindtap="chooseLandlord">
+        <view class="card-icon">
+          <text class="icon">🔑</text>
+        </view>
+        <text class="card-title">我是房东</text>
+        <text class="card-desc">管理您的房源</text>
+        <view class="card-arrow">→</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">使用即代表同意</text>
+    <text class="footer-link" bindtap="showAgreement">《用户协议》</text>
+    <text class="footer-text">和</text>
+    <text class="footer-link" bindtap="showPrivacy">《隐私政策》</text>
+  </view>
+</view>

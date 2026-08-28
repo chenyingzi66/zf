@@ -1,0 +1,81 @@
+<!-- pages/landlord/house-detail/house-detail.wxml -->
+<view class="detail-page">
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <block wx:if="{{house && !loading}}">
+    <!-- 图片轮播 -->
+    <view class="img-section">
+      <swiper class="img-swiper" indicator-dots="{{images.length > 1}}" autoplay="{{false}}" bindchange="onSwiperChange">
+        <swiper-item wx:for="{{images}}" wx:key="index">
+          <image class="swiper-img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="img-count" wx:if="{{images.length > 1}}">{{currentImg + 1}}/{{images.length}}</view>
+      <view class="status-badge" style="background:{{house.statusBg}};color:{{house.statusColor}}">{{house.statusLabel}}</view>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="info-card">
+      <view class="title-row">
+        <text class="house-title">{{house.title}}</text>
+        <text class="house-price">¥{{house.price}}/{{house.rentUnit}}</text>
+      </view>
+      <view class="address-row">
+        <text class="address-icon">📍</text>
+        <text class="address-text">{{house.province}}{{house.city}}{{house.district}}{{house.address}}</text>
+      </view>
+      <view class="tags-row">
+        <text class="tag">{{house.houseType}}</text>
+        <text class="tag">{{house.area}}㎡</text>
+        <text class="tag" wx:if="{{house.floor}}">{{house.floor}}</text>
+        <text class="tag">{{house.rentType}}</text>
+      </view>
+    </view>
+
+    <!-- 审核状态 -->
+    <view class="info-card">
+      <view class="section-title">审核状态</view>
+      <view class="audit-row">
+        <text class="audit-label">审核状态</text>
+        <text class="audit-val" style="color:{{house.auditStatusColor}}">{{house.auditStatusLabel}}</text>
+      </view>
+      <view class="audit-row" wx:if="{{house.auditRemark}}">
+        <text class="audit-label">审核备注</text>
+        <text class="audit-val">{{house.auditRemark}}</text>
+      </view>
+      <view class="audit-row">
+        <text class="audit-label">浏览次数</text>
+        <text class="audit-val">{{house.viewCount || 0}} 次</text>
+      </view>
+      <view class="audit-row">
+        <text class="audit-label">发布时间</text>
+        <text class="audit-val">{{house.createTime}}</text>
+      </view>
+    </view>
+
+    <!-- 配套设施 -->
+    <view class="info-card" wx:if="{{facilities.length > 0}}">
+      <view class="section-title">配套设施</view>
+      <view class="facility-list">
+        <view class="facility-item" wx:for="{{facilities}}" wx:key="*this">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 房源描述 -->
+    <view class="info-card" wx:if="{{house.description}}">
+      <view class="section-title">房源描述</view>
+      <text class="desc-text">{{house.description}}</text>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <view class="action-btn edit-btn" bindtap="goEdit">编辑房源</view>
+      <view class="action-btn toggle-btn" bindtap="toggleStatus" wx:if="{{house.status === 0 || house.status === 1}}">
+        {{house.status === 1 ? '下架房源' : '上架房源'}}
+      </view>
+      <view class="action-btn del-btn" bindtap="deleteHouseAction">删除房源</view>
+    </view>
+  </block>
+</view>

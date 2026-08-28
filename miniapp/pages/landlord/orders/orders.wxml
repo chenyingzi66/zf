@@ -1,0 +1,113 @@
+<!-- pages/landlord/orders/orders.wxml -->
+<view class="orders-page">
+  <!-- 顶部状态栏 -->
+  <view class="header-bar">
+    <view class="header-title">订单管理</view>
+    <view class="header-refresh" bindtap="onRefresh">
+      <text class="refresh-icon">🔄</text>
+      <text class="refresh-text" wx:if="{{lastRefresh}}">{{lastRefresh}}</text>
+    </view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <scroll-view class="tab-bar" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="tab-list">
+      <view class="tab-item {{curTab === item.key ? 'active' : ''}}" wx:for="{{tabs}}" wx:key="key" bindtap="switchTab" data-key="{{item.key}}">
+        <text class="tab-label">{{item.label}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 订单列表 -->
+  <scroll-view class="order-list" scroll-y enhanced refresher-enabled refresher-triggered="{{loading}}" bindrefresherrefresh="onPullDownRefresh">
+    <view class="order-card" wx:for="{{list}}" wx:key="id">
+      <!-- 卡片头部 -->
+      <view class="card-header" bindtap="goDetail" data-id="{{item.id}}">
+        <view class="header-left">
+          <text class="order-no">{{item.orderNo}}</text>
+          <text class="order-time">{{item.createTime}}</text>
+        </view>
+        <view class="status-badge" style="background:{{item.statusBg}};color:{{item.statusColor}}">
+          <text class="status-icon">{{item.statusIcon}}</text>
+          <text>{{item.statusLabel}}</text>
+        </view>
+      </view>
+
+      <!-- 房源信息 -->
+      <view class="card-body" bindtap="goDetail" data-id="{{item.id}}">
+        <view class="house-info">
+          <image class="house-img" src="{{item.houseImage || '/assets/images/default-house.png'}}" mode="aspectFill"></image>
+          <view class="house-meta">
+            <text class="house-title">{{item.houseTitle || '房源'}}</text>
+            <text class="house-address">{{item.houseAddress || ''}}</text>
+            <view class="house-tags">
+              <text class="tag">{{item.rentType}}</text>
+              <text class="tag" wx:if="{{item.rentCountDisplay}}">{{item.rentCountDisplay}}{{item.rentUnit}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 租客与租期信息 -->
+      <view class="card-info" bindtap="goDetail" data-id="{{item.id}}">
+        <view class="info-row">
+          <text class="info-icon">👤</text>
+          <text class="info-label">租客</text>
+          <text class="info-val">{{item.guestName || item.realName || '未填写'}}</text>
+          <text class="info-phone" wx:if="{{item.guestPhone || item.phone}}">{{item.guestPhone || item.phone}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-icon">📅</text>
+          <text class="info-label">入住</text>
+          <text class="info-val">{{item.checkInDate || item.startDate || '未设置'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-icon">🏁</text>
+          <text class="info-label">退房</text>
+          <text class="info-val">{{item.checkOutDate || item.endDate || '未设置'}}</text>
+        </view>
+      </view>
+
+      <!-- 金额与操作 -->
+      <view class="card-footer">
+        <view class="amount-info">
+          <text class="amount-label">订单金额</text>
+          <text class="amount-val">¥{{item.displayAmount}}</text>
+        </view>
+        
+        <!-- 待确认状态操作 -->
+        <view class="action-btns" wx:if="{{item.orderStatus === 0}}">
+          <view class="action-btn reject" catchtap="rejectOrder" data-id="{{item.id}}" data-orderno="{{item.orderNo}}">拒绝</view>
+          <view class="action-btn confirm" catchtap="confirmOrder" data-id="{{item.id}}" data-orderno="{{item.orderNo}}">确认订单</view>
+        </view>
+        
+        <!-- 租住中状态操作 -->
+        <view class="action-btns" wx:if="{{item.orderStatus === 2}}">
+          <view class="action-btn contact" catchtap="contactTenant" data-item="{{item}}">联系租客</view>
+          <view class="action-btn complete" catchtap="completeOrder" data-id="{{item.id}}" data-orderno="{{item.orderNo}}">完结订单</view>
+        </view>
+        
+        <!-- 其他状态 -->
+        <view class="action-btns" wx:if="{{item.orderStatus === 1 || item.orderStatus === 3 || item.orderStatus === 4 || item.orderStatus === 5}}">
+          <view class="action-btn detail" bindtap="goDetail" data-id="{{item.id}}">查看详情</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{list.length === 0 && !loading}}">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">暂无{{curTab === 'all' ? '' : tabs[curTab].label}}订单</text>
+      <text class="empty-tip" wx:if="{{curTab === 'pending'}}">新订单将显示在这里</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading && list.length === 0}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <!-- 底部安全区 -->
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>

@@ -1,0 +1,82 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/auth/choose-role/choose-role",
+    "pages/tenant/login/login",
+    "pages/tenant/register/register",
+    "pages/tenant/index/index",
+    "pages/tenant/house-list/house-list",
+    "pages/tenant/house-detail/house-detail",
+    "pages/tenant/booking/booking",
+    "pages/tenant/favorites/favorites",
+    "pages/tenant/orders/orders",
+    "pages/tenant/order-detail/order-detail",
+    "pages/tenant/profile/profile",
+    "pages/tenant/feedback/feedback",
+    "pages/tenant/messages/messages",
+    "pages/chat/chat",
+    "pages/landlord/login/login",
+    "pages/landlord/register/register",
+    "pages/landlord/index/index",
+    "pages/landlord/houses/houses",
+    "pages/landlord/house-detail/house-detail",
+    "pages/landlord/publishHouse/publishHouse",
+    "pages/landlord/orders/orders",
+    "pages/landlord/order-detail/order-detail",
+    "pages/landlord/tenants/tenants",
+    "pages/landlord/stats/stats",
+    "pages/landlord/profile/profile",
+    "pages/landlord/feedback/feedback"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4A90E2",
+    "navigationBarTitleText": "随心住",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F5F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4A90E2",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/tenant/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/tenant/messages/messages",
+        "text": "消息",
+        "iconPath": "assets/icons/message.png",
+        "selectedIconPath": "assets/icons/message-active.png"
+      },
+      {
+        "pagePath": "pages/tenant/orders/orders",
+        "text": "订单",
+        "iconPath": "assets/icons/order.png",
+        "selectedIconPath": "assets/icons/order-active.png"
+      },
+      {
+        "pagePath": "pages/tenant/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于推荐附近房源"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseAddress"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

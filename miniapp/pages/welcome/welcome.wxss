@@ -1,0 +1,129 @@
+/* pages/welcome/welcome.wxss */
+
+.welcome-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx 20rpx;
+}
+
+.welcome-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80rpx;
+  margin-bottom: 100rpx;
+}
+
+.logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 30rpx;
+  filter: drop-shadow(0 10rpx 20rpx rgba(0, 0, 0, 0.2));
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+  letter-spacing: 2rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+.welcome-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.btn {
+  width: 100%;
+  height: 120rpx;
+  background: #fff;
+  border: none;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15rpx 35rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.btn:active {
+  transform: translateY(-4rpx);
+  box-shadow: 0 20rpx 45rpx rgba(0, 0, 0, 0.2);
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-icon {
+  font-size: 48rpx;
+  display: block;
+}
+
+.btn-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.btn-tenant {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-tenant .btn-text {
+  color: #fff;
+}
+
+.btn-landlord {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.btn-landlord .btn-text {
+  color: #fff;
+}
+
+.welcome-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-top: 40rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-link {
+  font-size: 24rpx;
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}

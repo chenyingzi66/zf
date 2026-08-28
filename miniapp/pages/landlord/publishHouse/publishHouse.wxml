@@ -1,0 +1,109 @@
+<!-- pages/landlord/publishHouse/publishHouse.wxml -->
+<view class="publish-page">
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <block wx:if="{{!loading}}">
+    <!-- 地址选择 -->
+    <view class="section-card">
+      <view class="section-title">房源地址</view>
+      <view class="form-row">
+        <text class="fl">省份</text>
+        <picker mode="selector" range="{{provinces}}" value="{{provinceIndex}}" bindchange="onProvinceChange">
+          <view class="picker-val">{{selectedProvince || '请选择省份'}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="fl">城市</text>
+        <picker mode="selector" range="{{cities}}" value="{{cityIndex}}" bindchange="onCityChange" disabled="{{cities.length === 0}}">
+          <view class="picker-val {{cities.length === 0 ? 'disabled' : ''}}">{{selectedCity || '请选择城市'}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="fl">区县</text>
+        <picker mode="selector" range="{{districts}}" value="{{districtIndex}}" bindchange="onDistrictChange" disabled="{{districts.length === 0}}">
+          <view class="picker-val {{districts.length === 0 ? 'disabled' : ''}}">{{selectedDistrict || '请选择区县'}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="fl">详细地址</text>
+        <input class="fi" placeholder="请输入详细地址" value="{{address}}" bindinput="onInput" data-field="address" />
+      </view>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="section-card">
+      <view class="section-title">基本信息</view>
+      <view class="form-row">
+        <text class="fl">房源标题</text>
+        <input class="fi" placeholder="请输入房源标题" value="{{title}}" bindinput="onInput" data-field="title" maxlength="50" />
+      </view>
+      <view class="form-row">
+        <text class="fl">户型</text>
+        <picker mode="selector" range="{{houseTypes}}" value="{{houseTypeIndex}}" bindchange="onHouseTypeChange">
+          <view class="picker-val">{{houseType || '请选择户型'}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="fl">面积(㎡)</text>
+        <input class="fi" type="digit" placeholder="请输入面积" value="{{area}}" bindinput="onInput" data-field="area" />
+      </view>
+      <view class="form-row">
+        <text class="fl">楼层</text>
+        <input class="fi" placeholder="如：3/6层" value="{{floor}}" bindinput="onInput" data-field="floor" />
+      </view>
+    </view>
+
+    <!-- 租金信息 -->
+    <view class="section-card">
+      <view class="section-title">租金信息</view>
+      <view class="form-row">
+        <text class="fl">租赁方式</text>
+        <picker mode="selector" range="{{rentTypes}}" value="{{rentTypeIndex}}" bindchange="onRentTypeChange">
+          <view class="picker-val">{{rentType}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="fl">租金(元)</text>
+        <input class="fi" type="digit" placeholder="请输入租金" value="{{price}}" bindinput="onInput" data-field="price" />
+      </view>
+    </view>
+
+    <!-- 配套设施 -->
+    <view class="section-card">
+      <view class="section-title">配套设施</view>
+      <view class="facility-list">
+        <view class="facility-item {{facilitySelected[item] ? 'active' : ''}}" wx:for="{{facilityList}}" wx:key="*this" bindtap="toggleFacility" data-name="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 房源描述 -->
+    <view class="section-card">
+      <view class="section-title">房源描述</view>
+      <textarea class="desc-input" placeholder="请描述房源特点、周边配套等信息..." value="{{description}}" bindinput="onInput" data-field="description" maxlength="500"></textarea>
+    </view>
+
+    <!-- 房源图片 -->
+    <view class="section-card">
+      <view class="section-title">房源图片 <text class="required">*</text></view>
+      <view class="image-list">
+        <view class="img-item" wx:for="{{images}}" wx:key="index">
+          <image class="preview-img" src="{{item}}" mode="aspectFill"></image>
+          <view class="del-img" bindtap="deleteImage" data-index="{{index}}">✕</view>
+        </view>
+        <view class="add-img" bindtap="chooseImage" wx:if="{{images.length < 9}}">
+          <text class="add-icon">＋</text>
+          <text class="add-tip">上传图片</text>
+        </view>
+      </view>
+      <text class="img-tip">最多上传9张图片</text>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-btn {{submitting ? 'disabled' : ''}}" bindtap="submit">
+      {{submitting ? '提交中...' : isEdit ? '保存修改' : '提交审核'}}
+    </view>
+  </block>
+</view>
