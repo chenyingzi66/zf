@@ -1,0 +1,67 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: suixinzhu-mysql-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: suixinzhu
+      TZ: Asia/Shanghai
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - suixinzhu_mysql_data:/var/lib/mysql
+      - ./database/suixinzhu.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/update_order_table.sql:/docker-entrypoint-initdb.d/02-order.sql:ro
+      - ./database/update_chat_message.sql:/docker-entrypoint-initdb.d/03-chat.sql:ro
+      - ./database/test_data.sql:/docker-entrypoint-initdb.d/04-test-data.sql:ro
+      - ./database/update_images.sql:/docker-entrypoint-initdb.d/05-images.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p123456 --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: suixinzhu-backend-dev
+    restart: unless-stopped
+    working_dir: /workspace/backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/suixinzhu?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+      UPLOAD_PATH: /workspace/uploads/
+      UPLOAD_URL_PREFIX: http://localhost:8080/uploads/
+      TZ: Asia/Shanghai
+    ports:
+      - "8080:8080"
+      # Reserved for optional remote debugging from an IDE.
+      - "5005:5005"
+    volumes:
+      - ./backend:/workspace/backend
+      - ./uploads:/workspace/uploads
+      - suixinzhu_maven_cache:/root/.m2
+    command: mvn spring-boot:run
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.dev
+    container_name: suixinzhu-admin-dev
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "${ADMIN_PORT:-3001}:3001"
+    volumes:
+      - ./admin:/app
+    command: node server.js
+
+volumes:
+  suixinzhu_mysql_data:
+  suixinzhu_maven_cache:

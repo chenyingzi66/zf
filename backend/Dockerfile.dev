@@ -1,0 +1,8 @@
+FROM maven:3.9-eclipse-temurin-17
+
+WORKDIR /workspace/backend
+
+# The source tree and Maven repository are mounted by docker-compose.dev.yml.
+EXPOSE 8080 5005
+
+CMD ["mvn", "spring-boot:run"]
