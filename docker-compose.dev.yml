@@ -62,6 +62,27 @@ services:
       - ./admin:/app
     command: node server.js
 
+  # React 版管理端(模版重构后的新界面),与旧 admin 并行,便于逐页对照。
+  admin-pro:
+    build:
+      context: ./admin-pro
+      dockerfile: Dockerfile.dev
+    container_name: suixinzhu-admin-pro-dev
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "${ADMIN_PRO_PORT:-3003}:5174"
+    environment:
+      # 浏览器视角的后端地址,不能写容器名 backend
+      VITE_API_BASE_URL: http://localhost:8080
+      TZ: Asia/Shanghai
+    volumes:
+      - ./admin-pro:/app
+      # 独立卷,避免宿主目录把容器里装好的依赖盖掉
+      - suixinzhu_admin_pro_modules:/app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
 volumes:
   suixinzhu_mysql_data:
   suixinzhu_maven_cache:
+  suixinzhu_admin_pro_modules:
